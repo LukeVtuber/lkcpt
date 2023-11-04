@@ -162,6 +162,58 @@ public class lkcpt
 
     public static final RegistryObject<Item> COPPER_SHOVEL = ITEMS.register("copper_shovel", () -> new CopperShovelItem());
 
+    public static class CopperAxeProperties extends Item.Properties
+    {
+        CopperAxeProperties ()
+        {
+            this.rarity(Rarity.COMMON);
+            this.defaultDurability(500);
+        }
+    };
+
+    public static class CopperAxeItem extends net.minecraft.world.item.AxeItem
+    {
+        CopperAxeItem()
+        {
+            super(new Tier() {
+
+                      @Override
+                      public int getUses() {
+                          return 0;
+                      }
+
+                      @Override
+                      public float getSpeed() {
+                          return 3;
+                      }
+
+                      @Override
+                      public float getAttackDamageBonus() {
+                          return 0;
+                      }
+
+                      @Override
+                      public int getLevel() {
+                          return 5;
+                      }
+
+                      @Override
+                      public int getEnchantmentValue() {
+                          return 0;
+                      }
+
+                      @Override
+                      public Ingredient getRepairIngredient() {
+                          return null;
+                      }
+                  }
+                    ,3,0,new CopperAxeProperties());
+
+        }
+    };
+
+    public static final RegistryObject<Item> COPPER_AXE = ITEMS.register("copper_axe", () -> new CopperAxeItem());
+
 
     // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -178,6 +230,7 @@ public class lkcpt
             .displayItems((parameters, output) -> {
                 output.accept(COPPER_PICKAXE.get());
                 output.accept(COPPER_SHOVEL.get());// Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(COPPER_AXE.get());
             }).build());
 
 
